@@ -11,7 +11,7 @@ jobs:
           spreadsheetId: '13bkuqMn5_rvIehw4voVpXxeFNN6x8DxcT9otL0CPeNw'
           commands: |
             [
-              { "command": "getData", "args": { "range": "'polygons'!A2:С26" } }
+              { "command": "getData", "args": { "range": "'polygons'!A2:C26" } }
             ]
         env:
           GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
