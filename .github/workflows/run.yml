@@ -1,0 +1,22 @@
+name: gsheet.action test
+on: push
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - id: 'update_worksheet'
+        uses: jroehl/gsheet.action@v2.0.0
+        with:
+          spreadsheetId: '13bkuqMn5_rvIehw4voVpXxeFNN6x8DxcT9otL0CPeNw'
+          commands: |
+            [
+              { "command": "getData", "args": { "range": "'polygons'!A2:С26" } }
+            ]
+        env:
+          GSHEET_CLIENT_EMAIL: ${{ secrets.GSHEET_CLIENT_EMAIL }}
+          GSHEET_PRIVATE_KEY: ${{ secrets.GSHEET_PRIVATE_KEY }}
+      - name: dump results
+        env:
+          RESULTS: ${{ steps.update_worksheet.outputs.results }}
+        run: echo "$RESULTS" | jq
